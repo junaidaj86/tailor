@@ -15,7 +15,8 @@ export async function POST(request: Request){
             data:{
                 username: body.username,
                 email: body.email,
-                password: await  bcrypt.hash(body.password, 10)
+                password: await  bcrypt.hash(body.password, 10),
+                role: body.role,
             }
         });
         const {password, ...userWithoutPassword} = user;

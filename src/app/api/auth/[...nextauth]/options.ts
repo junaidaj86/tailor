@@ -2,10 +2,24 @@ import prismadb from "@/lib/prismadb";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials"
 
+import { GithubProfile } from 'next-auth/providers/github'
+import GitHubProvider from 'next-auth/providers/github'
 import * as bcrypt from 'bcrypt';
 
 export const options: NextAuthOptions = {
-  providers: [
+  providers: [GitHubProvider({
+    profile(profile: GithubProfile) {
+        //console.log(profile)
+        return {
+            ...profile,
+            role: profile.role ?? "user",
+            id: profile.id.toString(),
+            image: profile.avatar_url,
+        }
+    },
+    clientId: process.env.GITHUB_ID as string,
+    clientSecret: process.env.GITHUB_SECRET as string,
+}),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Credentials',
