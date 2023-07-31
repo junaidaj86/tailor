@@ -1,7 +1,7 @@
 import prismadb from '@/lib/prismadb'
 import './globals.css'
 import type { Metadata } from 'next'
-import { ThemeProvider } from '@/provider/theme-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/navbar'
