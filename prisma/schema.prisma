@@ -3,19 +3,102 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
+// schema.prisma
 
 model User {
-  id            String   @id @default(uuid())
-  username      String   
-  password      String    
-  email         String
-  role          String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  @@index([id])
+  id        String   @id @default(uuid())
+  username  String
+  password  String
+  email     String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shop      Shop?    @relation(fields: [shopId], references: [id])
+  shopId    Int?
+}
+
+model Customer {
+  id      Int     @id @default(autoincrement())
+  name    String
+  email   String  @unique
+  phone   String  @unique
+  address String
+  shirts  Shirt[]
+  pants   Pant[]
+  Order   Order[]
+}
+
+model Shirt {
+  id            Int         @id @default(autoincrement())
+  length        String
+  neck          String
+  waist         String
+  sleeves       String
+  sleevesLength String
+  cuff          String
+  cuffSize      String
+  chestSize     String
+  shoulder      String
+  notes         String
+  fit           String
+  collar        String
+  placket       String
+  seat          String
+  customer      Customer?   @relation(fields: [customerId], references: [id])
+  customerId    Int?
+  OrderItem     OrderItem[]
+}
+
+model Pant {
+  id         Int         @id @default(autoincrement())
+  waist      String
+  hip        String
+  rise       String
+  inseam     String
+  opening    String
+  outseam    String
+  braise     String
+  fraise     String
+  knee       String
+  customer   Customer?   @relation(fields: [customerId], references: [id])
+  customerId Int?
+  OrderItem  OrderItem[]
+}
+
+model Shop {
+  id      Int     @id @default(autoincrement())
+  name    String
+  address String
+  orders  Order[]
+  user    User[]
+  userId  String?
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  orderId     String
+  createDate  DateTime
+  deliverDate DateTime
+  orderStatus String
+  orderItem   OrderItem[]
+  customer    Customer?   @relation(fields: [customerId], references: [id])
+  customerId  Int?
+  shop        Shop?       @relation(fields: [shopId], references: [id])
+  shopId      Int?
+}
+
+model OrderItem {
+  id       Int    @id @default(autoincrement())
+  quantity Int
+  shirt    Shirt? @relation(fields: [shirtId], references: [id])
+  shirtId  Int?
+  pant     Pant?  @relation(fields: [pantId], references: [id])
+  pantId   Int?
+  order    Order  @relation(fields: [orderId], references: [id])
+  orderId  Int
 }
