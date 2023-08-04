@@ -15,49 +15,30 @@ export function MainNav({
   const routes = [
     {
       href: `/`,
-      label: 'Overview',
+      label: 'Dashboard',
       active: pathname === `/`,
     },
     {
-      href: `/size`,
-      label: 'Billboards',
-      active: pathname === `/size`,
+      href: `/shirt`,
+      label: 'Shirt Order',
+      active: pathname === `/shirt`,
     },
     {
-      href: `//categories`,
-      label: 'Categories',
-      active: pathname === `//categories`,
+      href: `/pant`,
+      label: 'Pant Order',
+      active: pathname === `/pant`,
     },
     {
-      href: `//sizes`,
-      label: 'Sizes',
-      active: pathname === `//sizes`,
+      href: `/shop`,
+      label: 'Shop',
+      active: pathname === `/shop`,
     },
     {
-      href: `//colors`,
-      label: 'Colors',
-      active: pathname === `//colors`,
+      href: `/orders`,
+      label: 'All Orders',
+      active: pathname === `/orders`,
     },
-    {
-      href: `//suppliers`,
-      label: 'Suppliers',
-      active: pathname === `//suppliers`,
-    },
-    {
-      href: `//products`,
-      label: 'Products',
-      active: pathname === `//products`,
-    },
-    {
-      href: `//orders`,
-      label: 'Orders',
-      active: pathname === `//orders`,
-    },
-    {
-      href: `//settings`,
-      label: 'Settings',
-      active: pathname === `//settings`,
-    },
+    
   ]
 
   return (
