@@ -7,6 +7,7 @@ import prismadb from "@/lib/prismadb";
 
 import { options } from '@/app/api/auth/[...nextauth]/options';
 import { getServerSession } from "next-auth/next"
+import NavbarActions from "./navbar-actions";
 
 const Navbar = async () => {
   const session = await getServerSession(options);
@@ -26,6 +27,7 @@ const Navbar = async () => {
           <ThemeToggle />
          
         </div>
+        <NavbarActions />
       </div>
     </div>
   );

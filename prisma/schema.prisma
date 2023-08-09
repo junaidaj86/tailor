@@ -35,20 +35,20 @@ model Customer {
 
 model Shirt {
   id            Int         @id @default(autoincrement())
-  length        String
-  neck          String
-  waist         String
+  length        Int
+  neck          Int
   sleeves       String
-  sleevesLength String
+  sleevesLength Int
   cuff          String
-  cuffSize      String
-  chestSize     String
-  shoulder      String
+  cuffSize      Int
+  chestSize     Int
+  shoulder      Int
   notes         String
   fit           String
   collar        String
   placket       String
   seat          String
+  quantity      Int
   customer      Customer?   @relation(fields: [customerId], references: [id])
   customerId    Int?
   OrderItem     OrderItem[]
@@ -65,6 +65,7 @@ model Pant {
   braise     String
   fraise     String
   knee       String
+  quantity      Int
   customer   Customer?   @relation(fields: [customerId], references: [id])
   customerId Int?
   OrderItem  OrderItem[]
@@ -84,8 +85,8 @@ model Shop {
 model Order {
   id          Int         @id @default(autoincrement())
   orderId     String
-  createDate  DateTime
-  deliverDate DateTime
+  createDate  DateTime @default(now())
+  deliverDate DateTime @updatedAt
   orderStatus String
   orderItem   OrderItem[]
   customer    Customer?   @relation(fields: [customerId], references: [id])
