@@ -1,11 +1,10 @@
 'use client'
 import { useState } from "react";
 import * as z from "zod";
-import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useCart from "@/hooks/use-cart";
 
 import { Input } from "@/components/ui/input";

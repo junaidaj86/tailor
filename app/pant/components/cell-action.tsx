@@ -16,10 +16,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { AlertModal } from "@/components/modals/alert-modal";
 
-import { CustomerShirtData } from "./columns";
+import { CustomerPantData } from "./columns";
 
 interface CellActionProps {
-  data: CustomerShirtData;
+  data: CustomerPantData;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({
@@ -33,7 +33,7 @@ export const CellAction: React.FC<CellActionProps> = ({
   const onConfirm = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/shirt/${data.shirtId}`);
+      await axios.delete(`/api/pant/${data.pantId}`);
       toast.success('Shop deleted.');
       router.refresh();
     } catch (error) {
@@ -67,12 +67,12 @@ export const CellAction: React.FC<CellActionProps> = ({
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => onCopy(data.shirtId)}
+            onClick={() => onCopy(data.pantId)}
           >
             <Copy className="mr-2 h-4 w-4" /> Copy Id
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => router.push(`/shirt/${data.shirtId}`)}
+            onClick={() => router.push(`/pant/${data.pantId}`)}
           >
             <Edit className="mr-2 h-4 w-4" /> Update
           </DropdownMenuItem>

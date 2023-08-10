@@ -1,20 +1,20 @@
 import prismadb from "@/lib/prismadb";
-import { CustomerShirtData } from "./components/columns"
-import { ShirtClient } from "./components/client";
+import { CustomerPantData } from "./components/columns"
+import { PantClient } from "./components/client";
 
 const ShopPage = async ({
   params
 }: {
   params: { storeId: string }
 }) => {
-  const shirts = await prismadb.shirt.findMany({
+  const pants = await prismadb.pant.findMany({
     include: {
       customer: true, // Include the associated Customer data
     },
   });
 
-  const formattedShops: CustomerShirtData[] = shirts.map((item) => ({
-    shirtId: item.id.toString(),
+  const formattedShops: CustomerPantData[] = pants.map((item) => ({
+    pantId: item.id.toString(),
     customerName: item.customer!.name, // Use non-null assertion here
     customerAddress: item.customer!.address, // Use non-null assertion here
     customerPhone: item.customer!.phone, // Use non-null assertion here
@@ -25,7 +25,7 @@ const ShopPage = async ({
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <ShirtClient data={formattedShops} />
+        <PantClient data={formattedShops} />
       </div>
     </div>
   );

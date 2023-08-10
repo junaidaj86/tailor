@@ -24,6 +24,8 @@ const CartPage = () => {
     return null;
   }
 
+  console.log("0000"+ JSON.stringify(cart, undefined,2))
+
   return (
     <div className="bg-white">
       <Container>
